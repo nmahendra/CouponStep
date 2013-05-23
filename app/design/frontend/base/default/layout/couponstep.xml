@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+	<checkout_onepage_coupon>
+		<block type="couponstep/checkout_onepage_coupon" name="root" output="toHtml" template="couponstep/checkout/onepage/coupon.phtml" />
+	</checkout_onepage_coupon>
+
+	<checkout_onepage_index>
+		<reference name="checkout.onepage">
+			<action method="setTemplate">
+				<template>couponstep/checkout/onepage.phtml</template>
+			</action>
+			<block type="couponstep/checkout_onepage_coupon" name="checkout.onepage.coupon" as="coupon" template="couponstep/checkout/onepage/coupon.phtml" />
+		</reference>
+	</checkout_onepage_index>	
+	
+</layout>

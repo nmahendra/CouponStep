@@ -1,0 +1,44 @@
+<div class="coupon_code" id="checkout-coupon-load">
+<form id="co-coupon-form">
+	<fieldset>
+		<input type="hidden" name="remove" id="coupon:remove" value="0" />
+		<ul class="form-list">
+			<li>
+				<label for="coupon:coupon_code"><?php echo $this->__('Enter your Coupon or Gift Certificate') //$this->__('Coupon Code') ?></label>
+				<br/>
+				<input class="input-text" id="coupon:coupon_code" type="text" name="coupon_code" value="<?php echo $this->htmlEscape($this->getCouponCode()) ?>" />
+				&nbsp;&nbsp;&nbsp;
+				<a style="text-decoration:none;">* <?php echo $this->__('Optional') ?> (<?php echo $this->__('Not Compulsory') ?>)</a>
+			</li>
+		</ul>
+		<div class="button-set" id="coupon-buttons-container">
+		    <p class="required"></p>
+		    <div id="payment-buttons-container">
+		        <a href="#" class="back left" onclick="checkout.back(); return false;"><span><?php echo $this->__('Back') ?></span></a>
+		        <button type="button" class="button right" onclick="discountForm.submit(false)">
+		        	<span><span><?php echo $this->__('Continue') ?></span></span>
+		        </button>		        
+		        <span id="coupon-please-wait" style="display:none;" class="opc-please-wait right">
+		            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" class="v-middle" alt="" /> &nbsp; <?php echo $this->__('Loading next step...') ?> &nbsp;
+		        </span>
+		    </div>
+		</div>
+
+	</fieldset>
+</form>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+var coupon = new Coupon('co-coupon-form', '<?php echo $this->getUrl('checkout/onepage/saveCoupon') ?>' , '<?php echo $this->getUrl('checkout/onepage/cancelCoupon') ?>');
+var discountForm = new VarienForm('co-coupon-form');
+discountForm.submit = function (isRemove) {
+	if (isRemove) {
+        //$('coupon:coupon_code').value = "";
+		$('coupon:remove').value = "1";
+    } else {
+        $('coupon:remove').value = "0";
+    }
+	return coupon.save();
+}
+//]]>
+</script>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Zygnis_CouponStep>
+            <version>0.1.0</version>
+        </Zygnis_CouponStep>
+    </modules>
+    <global>
+        <helpers>
+            <couponstep>
+                <class>Zygnis_CouponStep_Helper</class>
+            </couponstep>
+        </helpers>
+        <models>
+            <couponstep>
+                <class>Zygnis_CouponStep_Model</class>
+                <resourceModel>couponstep_resource</resourceModel>
+            </couponstep>
+            
+            <couponstep_mysql4>
+                <class>Zygnis_CouponStep_Model_Mysql4</class>                
+            </couponstep_mysql4>     
+                   
+            <checkout>
+                <rewrite>
+                    <type_onepage>Zygnis_CouponStep_Model_Checkout_Type_Onepage</type_onepage>
+                </rewrite>
+            </checkout>
+        </models>
+        <blocks>
+            <couponstep>
+                <class>Zygnis_CouponStep_Block</class>
+            </couponstep>
+            <checkout>
+                <rewrite>
+                    <onepage>Zygnis_CouponStep_Block_Checkout_Onepage</onepage>
+                </rewrite>
+            </checkout>
+        </blocks>
+        <rewrite>
+            <Zygnis_CouponStep_Checkout_Onepage>
+                <from><![CDATA[#^/checkout/onepage/#]]></from>
+                <to>/couponstep/checkout_onepage/</to>
+                <override_action>true</override_action>
+            </Zygnis_CouponStep_Checkout_Onepage>
+        </rewrite>
+    </global>
+    <frontend>
+        <routers>
+            <couponstep>
+                <use>standard</use>
+                <args>
+                    <module>Zygnis_CouponStep</module>
+                    <frontName>couponstep</frontName>
+                </args>
+            </couponstep>
+        </routers>
+        <layout>
+            <updates module="checkout">
+                <couponstep>
+                    <file>couponstep.xml</file>
+                </couponstep>
+            </updates>
+        </layout>
+    </frontend>    
+</config>

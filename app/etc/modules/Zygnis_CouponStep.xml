@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Zygnis_CouponStep>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Zygnis_CouponStep>
+    </modules>
+</config>
+
